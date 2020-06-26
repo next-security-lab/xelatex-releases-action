@@ -1,12 +1,13 @@
 \documentclass{article}
 
 \usepackage{amsmath}
-\usepackage{librefranklin}
-\usepackage{roboto-mono}
+\usepackage{fontspec}
 
-\setmainfont{Libre Franklin}
-\setsansfont{Libre Franklin}
-\setmonofont{Roboto Mono}
+\setmainfont[ Path = fonts/, 
+UprightFont = *-regular,
+BoldFont = *-bold,
+BoldItalicFont = *-bolditalic
+]{texgyrepagella}
 
 \title{\LaTeX}
 \author{José Ignacio Escribano}
