@@ -19,9 +19,20 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+    - name: Cache TexLive
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-texlive
+      with:
+        path: /usr/local/texlive
 
+        key: ${{ runner.os }}-texlive-${{ env.cache-name }}
+        restore-keys: |
+          ${{ runner.os }}-texlive-${{ env.cache-name }}-
+          ${{ runner.os }}-texlive-
+          ${{ runner.os }}-
+
+    - uses: actions/checkout@v2
     - name: Install dependencies
       run: bash build.sh
 
