@@ -18,6 +18,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: Set up timezone
+      uses: zcong1993/setup-timezone@master
+      with:
+        timezone: Europe/Madrid
+
     - name: Set up Git repository
       uses: actions/checkout@v2
 
