@@ -1,6 +1,17 @@
 \documentclass{article}
+
 \usepackage{amsmath}
+\usepackage{fontspec}
+
+\usepackage{librefranklin}
+\usepackage{roboto-mono}
+
+\setmainfont{Libre Franklin}
+\setsansfont{Libre Franklin}
+\setmonofont{Roboto Mono}
+
 \title{\LaTeX}
+\author{José Ignacio Escribano}
 
 \begin{document}
   \maketitle
@@ -23,4 +34,10 @@
     E_0 &= mc^2 \\
     E &= \frac{mc^2}{\sqrt{1-\frac{v^2}{c^2}}}
   \end{align}
+
+  The most famous book to learn \TeX{} and \LaTeX{}
+  are~\cite{texbook} and~\cite{latex}, respectively.
+
+  \bibliographystyle{unsrt}
+  \bibliography{bibliography}
 \end{document}
