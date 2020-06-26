@@ -28,6 +28,8 @@ jobs:
       with:
         root_file: document.tex
         latexmk_use_xelatex: true
+        pre_compile: "tlmgr update --all"
+        post_compile: "latexmk -c"
 
     - name: Get version name
       id: version
