@@ -27,7 +27,7 @@ jobs:
       run: |
         sudo apt update && sudo apt upgrade -y
         sudo apt install texlive-full latexmk -y
-        latexmk -xelatex document.pdf
+        latexmk -xelatex document.tex
 
     - name: Get version name
       id: version
