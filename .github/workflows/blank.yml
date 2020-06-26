@@ -55,3 +55,12 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_name: document-v.${{ steps.version.outputs.version }}.pdf
         asset_content_type: application/pdf
+
+    - name: Send file to Telegram
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          document-v.${{ steps.version.outputs.version }}.pdf
+        document: ./document.pdf
