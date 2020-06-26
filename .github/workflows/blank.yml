@@ -69,4 +69,4 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: 🔖 New version of document with name `document-v.${{ steps.version.outputs.version }}.pdf` 🔖
         format: markdown
-        document: ./document-v.${{ steps.version.outputs.version }}.pdf
+        message_file: ./document-v.${{ steps.version.outputs.version }}.pdf
