@@ -25,8 +25,8 @@ jobs:
 
     - name: Compile LaTeX document
       run: |
-        apt update && apt upgrade -y
-        apt install texlive-full latexmk -y
+        sudo apt update && sudo apt upgrade -y
+        sudo apt install texlive-full latexmk -y
         latexmk -xelatex document.pdf
 
     - name: Get version name
