@@ -24,12 +24,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Compile LaTeX document
-      uses: xu-cheng/latex-action@v2
-      with:
-        root_file: document.tex
-        latexmk_use_xelatex: true
-        pre_compile: "tlmgr update --all --self"
-        post_compile: "latexmk -c"
+      run: |
+        apt update && apt upgrade -y
+        apt install texlive-full latexmk -y
+        latexmk -xelatex document.pdf
 
     - name: Get version name
       id: version
