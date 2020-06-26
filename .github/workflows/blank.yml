@@ -31,9 +31,6 @@ jobs:
       id: version
       run: echo "::set-output name=version::$(echo -e $(date +'%Y-%m-%d.%H%M%S.')$(echo -e ${GITHUB_SHA} | cut -c1-16))"
 
-    - name: Print version name
-      run: echo ${{ steps.version.outputs.version }}
-
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -56,11 +53,14 @@ jobs:
         asset_name: document-v.${{ steps.version.outputs.version }}.pdf
         asset_content_type: application/pdf
 
+    - name: Rename file
+      run: mv ./document.pdf ./document-v.${{ steps.version.outputs.version }}.pdf
+
     - name: Send file to Telegram
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          document-v.${{ steps.version.outputs.version }}.pdf
-        document: ./document.pdf
+        message: 🔖 New version of document with name `document-v.${{ steps.version.outputs.version }}.pdf` 🔖
+        format: markdown
+        document: ./document-v.${{ steps.version.outputs.version }}.pdf
