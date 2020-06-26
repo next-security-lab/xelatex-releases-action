@@ -27,9 +27,9 @@ jobs:
         root_file: document.tex
         latexmk_use_xelatex: true
 
-    - name: Get short SHA
-      id: slug
-      run: echo "::set-output name=sha16::$(echo ${GITHUB_SHA} | cut -c1-16)"
+    - name: Get version name
+      id: version
+      run: echo "::set-output name=version::$(echo -e $(date +'%Y-%m-%d.%H:%M:%S.')$(echo -e ${GITHUB_SHA} | cut -c1-16))"
 
     - name: Create Release
       id: create_release
@@ -38,7 +38,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v.${{ steps.slug.outputs.sha16 }}
-        release_name: Release v.${{ steps.slug.outputs.sha16 }}
+        release_name: Release v.${{ steps.version.outputs.version }}
         draft: false
         prerelease: false
 
@@ -49,5 +49,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_name: document-v.${{ steps.slug.outputs.sha16 }}.pdf
+        asset_name: document-v.${{ steps.version.outputs.version }}.pdf
         asset_content_type: application/pdf
