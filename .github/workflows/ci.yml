@@ -28,7 +28,7 @@ jobs:
       with:
         root_file: document.tex
         latexmk_use_xelatex: true
-        extra_system_packages: librefranklin roboto-mono
+        extra_packages: librefranklin roboto-mono
 
     - name: Get version name
       id: version
