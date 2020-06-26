@@ -28,12 +28,9 @@ jobs:
         cache-name: cache-texlive
       with:
         path: /usr/local/texlive
-
         key: ${{ runner.os }}-texlive-${{ env.cache-name }}
         restore-keys: |
           ${{ runner.os }}-texlive-${{ env.cache-name }}-
-          ${{ runner.os }}-texlive-
-          ${{ runner.os }}-
 
     - uses: actions/checkout@v2
     - name: Install dependencies
@@ -51,8 +48,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: $(date +'%Y-%m-%d %H:%M:%S')-${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: ${{ github.ref }}
+        release_name: Release $(date +'%Y-%m-%d %H:%M:%S')-${{ github.ref }}
         draft: false
         prerelease: false
     - name: Upload Release Asset
