@@ -32,8 +32,7 @@ jobs:
       run: echo "::set-output name=version::$(echo -e $(date +'%Y-%m-%d.%H:%M:%S.')$(echo -e ${GITHUB_SHA} | cut -c1-16))"
 
     - name: Print version name
-      id: version
-      run: echo $(echo -e $(date +'%Y-%m-%d.%H:%M:%S.')$(echo -e ${GITHUB_SHA} | cut -c1-16))
+      run: echo ${{ steps.version.outputs.version }}
 
     - name: Create Release
       id: create_release
