@@ -51,6 +51,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
+        asset_path: ./document.pdf
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_name: document-v.${{ steps.version.outputs.version }}.pdf
         asset_content_type: application/pdf
