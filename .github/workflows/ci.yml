@@ -42,7 +42,7 @@ jobs:
         else
             VERSION="$DATE.$HASH.$BRANCH"
         fi
-        echo "::set-output name=version::$(echo v.$VERSION))"
+        echo "::set-output name=version::$(echo v.$VERSION)"
 
     - name: Create Release
       id: create_release
