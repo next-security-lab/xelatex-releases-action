@@ -7,7 +7,7 @@ on:
     tags:
       - v*
   pull_request:
-    branches: [ master ]
+    - master
 
 jobs:
   build:
@@ -43,6 +43,7 @@ jobs:
         else
             VERSION="$DATE.$HASH.$BRANCH"
         fi
+        echo "Version: $VERSION"
         echo "::set-output name=version::$(echo v.$VERSION)"
 
     - name: Create Release
