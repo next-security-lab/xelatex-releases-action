@@ -37,7 +37,7 @@ jobs:
         DATE=$(date +'%Y%m%d%H%M%S')
         HASH=$(echo -e ${GITHUB_SHA} | cut -c1-8)
         BRANCH=${GITHUB_HEAD_REF}
-        EVENT = ${GITHUB_EVENT_NAME}
+        EVENT=${GITHUB_EVENT_NAME}
         echo "Event: $EVENT"
         echo "Branch: $BRANCH"
         if [ "$BRANCH" = "master" ]; then
