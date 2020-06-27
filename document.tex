@@ -2,6 +2,7 @@
 
 \usepackage[pangram]{blindtext}
 \usepackage{minted}
+\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{fontspec}
 \usepackage{unicode-math}
@@ -55,6 +56,12 @@ BoldItalicFont = *-BoldItalic
 
   The most famous book to learn \TeX{} and \LaTeX{}
   are~\cite{texbook} and~\cite{latex}, respectively.
+
+  \begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{sky}
+    \caption{Sky}
+  \end{figure}
 
   \blindmathtrue
   \blinddocument
