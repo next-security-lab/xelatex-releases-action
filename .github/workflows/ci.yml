@@ -27,11 +27,23 @@ jobs:
       uses: xu-cheng/latex-action@v2
       with:
         root_file: document.tex
+        extra_system_packages: "py-pygments"
         latexmk_use_xelatex: true
+        latexmk_shell_escape: true
 
-    - name: Get version name
+    - name: Set version name
       id: version
-      run: echo "::set-output name=version::$(echo -e $(date +'%Y-%m-%d.%H%M%S.')$(echo -e ${GITHUB_SHA} | cut -c1-16))"
+      run: |
+        DATE=$(date +'%Y%m%d%H%M%S')
+        HASH=$(echo -e ${GITHUB_SHA} | cut -c1-8)
+        BRANCH=${GITHUB_HEAD_REF}
+
+        if [ "$BRANCH" = "master" ]; then
+            VERSION="$DATE.$HASH"
+        else
+            VERSION="$DATE.$HASH.$BRANCH"
+        fi
+        echo "::set-output name=version::$(echo v.$VERSION)"
 
     - name: Create Release
       id: create_release
@@ -39,8 +51,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v.${{ steps.version.outputs.version }}
-        release_name: Release v.${{ steps.version.outputs.version }}
+        tag_name: ${{ steps.version.outputs.version }}
+        release_name: Release ${{ steps.version.outputs.version }}
         draft: false
         prerelease: false
 
@@ -52,17 +64,17 @@ jobs:
       with:
         asset_path: ./document.pdf
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_name: document-v.${{ steps.version.outputs.version }}.pdf
+        asset_name: document-${{ steps.version.outputs.version }}.pdf
         asset_content_type: application/pdf
 
     - name: Rename file
-      run: mv ./document.pdf ./document-v.${{ steps.version.outputs.version }}.pdf
+      run: mv ./document.pdf ./document-${{ steps.version.outputs.version }}.pdf
 
     - name: Send file to Telegram
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: 🔖 New version of document with name `document-v.${{ steps.version.outputs.version }}.pdf` 🔖
+        message: 🔖 New version of document with name `document-${{ steps.version.outputs.version }}.pdf` 🔖
         format: markdown
-        document: ./document-v.${{ steps.version.outputs.version }}.pdf
+        document: ./document-${{ steps.version.outputs.version }}.pdf
