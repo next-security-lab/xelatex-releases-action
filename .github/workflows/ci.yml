@@ -37,7 +37,7 @@ jobs:
         DATE=$(date +'%Y%m%d%H%M%S')
         HASH=$(echo -e ${GITHUB_SHA} | cut -c1-8)
         BRANCH=${GITHUB_HEAD_REF}
-
+        echo "Branch: $BRANCH"
         if [ "$BRANCH" = "master" ]; then
             VERSION="$DATE.$HASH"
         else
