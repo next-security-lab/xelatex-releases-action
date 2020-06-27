@@ -36,9 +36,13 @@ jobs:
       run: |
         DATE=$(date +'%Y%m%d%H%M%S')
         HASH=$(echo -e ${GITHUB_SHA} | cut -c1-8)
-        BRANCH=${GITHUB_HEAD_REF}
         EVENT=${GITHUB_EVENT_NAME}
         echo "Event: $EVENT"
+        if [ "$EVENT" = "pull_request" ]; then
+            BRANCH=${GITHUB_HEAD_REF}
+        else
+            BRANCH=${GITHUB_REF##*/}
+        fi
         echo "Branch: $BRANCH"
         if [ "$BRANCH" = "master" ]; then
             VERSION="$DATE.$HASH"
