@@ -6,6 +6,11 @@
 \usepackage{amsmath}
 \usepackage{fontspec}
 \usepackage{unicode-math}
+\usepackage{tikz}
+\usepackage{adjustbox}
+
+\usetikzlibrary{lindenmayersystems}
+\usetikzlibrary[shadings]
 
 
 \setmainfont[Path = fonts/,
@@ -100,6 +105,23 @@ BoldItalicFont = *-BoldItalic
 
       return M
   \end{minted}
+
+  \section{Tikz diagram}
+
+  \begin{figure}[htbp!]
+    \centering
+    \begin{adjustbox}{max width=\textwidth}
+      \begin{tikzpicture}
+        \pgfdeclarelindenmayersystem{Koch curve}{
+          \rule{F -> F+F--F+F}
+        }
+
+        \draw[draw][l-system={Koch curve, step=4pt, angle=60, axiom=F++, order=5}]
+        lindenmayer system;
+      \end{tikzpicture}
+    \end{adjustbox}
+    \caption{Koch curve~\cite{koch}}
+  \end{figure}
 
   \bibliographystyle{unsrt}
   \bibliography{bibliography}
