@@ -10,6 +10,11 @@
 \usepackage{adjustbox}
 \usepackage{hyperref}
 \usepackage{booktabs}
+\usepackage[
+  type={CC},
+  modifier={by-sa},
+  version={4.0}
+]{doclicense}
 
 \hypersetup{
   colorlinks=true,
@@ -23,10 +28,10 @@
 
 
 \setmainfont[Path = fonts/,
-UprightFont = *-Regular,
-BoldFont = *-Bold,
-ItalicFont = *-Italic,
-BoldItalicFont = *-BoldItalic
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic
 ]{TexGyrePagella}
 
 \setmonofont[Path = fonts/,
@@ -36,13 +41,17 @@ BoldItalicFont = *-BoldItalic
   BoldItalicFont = *-BoldItalic
 ]{RobotoMono}
 
-\setmathfont[Path = fonts/]{TexGyrePagella-Math}
+\setmathfont[
+  Path = fonts/
+]{TexGyrePagella-Math}
 
 \title{\LaTeX}
 \author{José Ignacio Escribano}
 
 \begin{document}
   \maketitle
+
+  \doclicenseThis
 
   \tableofcontents
 
