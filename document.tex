@@ -1,4 +1,6 @@
-\documentclass{article}
+\documentclass[a4paper, 10pt]{article}
+
+\RequirePackage[l2tabu, orthodox]{nag}
 
 \usepackage[pangram]{blindtext}
 \usepackage{minted}
@@ -11,6 +13,12 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 
+\usepackage[
+  type={CC},
+  modifier={by-sa},
+  version={4.0}
+]{doclicense}
+
 \hypersetup{
   colorlinks=true,
   linkcolor=blue,
@@ -19,14 +27,12 @@
 }
 
 \usetikzlibrary{lindenmayersystems}
-\usetikzlibrary[shadings]
-
 
 \setmainfont[Path = fonts/,
-UprightFont = *-Regular,
-BoldFont = *-Bold,
-ItalicFont = *-Italic,
-BoldItalicFont = *-BoldItalic
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic
 ]{TexGyrePagella}
 
 \setmonofont[Path = fonts/,
@@ -36,13 +42,18 @@ BoldItalicFont = *-BoldItalic
   BoldItalicFont = *-BoldItalic
 ]{RobotoMono}
 
-\setmathfont[Path = fonts/]{TexGyrePagella-Math}
+\setmathfont[
+  Path = fonts/
+]{TexGyrePagella-Math}
 
 \title{\LaTeX}
 \author{José Ignacio Escribano}
 
 \begin{document}
+
   \maketitle
+
+  \doclicenseThis
 
   \tableofcontents
 
@@ -55,7 +66,7 @@ BoldItalicFont = *-BoldItalic
   programmable desktop publishing features and
   extensive facilities for automating most
   aspects of typesetting and desktop publishing,
-  including numbering and  cross-referencing,
+  including numbering and cross-referencing,
   tables and figures, page layout,
   bibliographies, and much more. \LaTeX{} was
   originally written in 1984 by Leslie Lamport
@@ -87,7 +98,9 @@ BoldItalicFont = *-BoldItalic
 
     \begin{table*}
       \centering
-      \caption{A table extracted from \href{https://people.inf.ethz.ch/markusp/teaching/guides/guide-tables.pdf}{"Small Guide to Making Nice Tables"}}
+      \caption{A table extracted from
+        \href{https://people.inf.ethz.ch/markusp/teaching/guides/guide-tables.pdf}
+          {"Small Guide to Making Nice Tables"}}
       \begin{adjustbox}{max width=\textwidth}
         \begin{tabular}{@{}rrrrcrrrcrrr@{}}
           \toprule
