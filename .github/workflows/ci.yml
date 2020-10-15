@@ -62,7 +62,7 @@ jobs:
         prerelease: false
 
     - name: Create different versions
-      run: bash create-version.sh ./document.pdf
+      run: bash create-versions.sh ./document.pdf
 
     - uses: actions/checkout@v2
     - run: |
