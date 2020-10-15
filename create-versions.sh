@@ -6,6 +6,7 @@
 # -dPDFSETTINGS=/prepress (high quality, color preserving, 300 dpi imgs)
 # -dPDFSETTINGS=/default  (almost identical to /screen)
 # Source: https://tex.stackexchange.com/questions/14429/pdftex-reduce-pdf-size-reduce-image-quality
+#         https://tex.stackexchange.com/questions/18987/how-to-make-the-pdfs-produced-by-pdflatex-smaller
 
 FILE=$1
 
@@ -18,9 +19,9 @@ for x in /screen /ebook /printer /prepress
 do
   echo "Generating ${x:1} version..."
   gs -sDEVICE=pdfwrite \
-     -dCompatibilityLevel=1.4 \
-     -dPDFSETTINGS=$x \
+     -dCompatibilityLevel=1.5 \
      -dPrinted=false \
+     -dPDFSETTINGS=$x \
      -dNOPAUSE \
      -dQUIET \
      -dBATCH \
