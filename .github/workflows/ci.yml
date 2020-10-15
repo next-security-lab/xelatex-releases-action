@@ -63,16 +63,3 @@ jobs:
         hub release create "${assets[@]}" -m "${{ steps.version.outputs.version }}" "${{ steps.version.outputs.version }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-    - name: Rename file
-      run: mv ./document.pdf ./document-${{ steps.version.outputs.version }}.pdf
-
-    - name: Send file to Telegram
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: 🔖 New version of document with name `document-${{ steps.version.outputs.version }}.pdf` 🔖
-        format: markdown
-        document: ./document-${{ steps.version.outputs.version }}.pdf
