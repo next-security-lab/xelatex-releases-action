@@ -65,7 +65,7 @@ jobs:
       run: bash create-versions.sh ./document.pdf
 
     - uses: actions/checkout@v2
-      run: |
+    - run: |
         set -x
         assets=()
         for asset in ./*.pdf report.txt; do
@@ -74,7 +74,6 @@ jobs:
         hub release create "${assets[@]}" -m "${{ steps.version.outputs.version }}" "${{ steps.version.outputs.version }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
 
     - name: Rename file
