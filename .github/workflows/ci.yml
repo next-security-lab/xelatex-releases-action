@@ -31,6 +31,9 @@ jobs:
         latexmk_use_xelatex: true
         latexmk_shell_escape: true
 
+    - name: Create different versions
+      run: bash create-versions.sh ./document.pdf
+
     - name: Set version name
       id: version
       run: |
@@ -50,7 +53,8 @@ jobs:
         echo "Version: $VERSION"
         echo "::set-output name=version::$(echo v.$VERSION)"
 
-    - run: |
+    - name: Create release
+      run: |
         set -x
         assets=()
         for asset in ./*.pdf report.txt; do
@@ -59,9 +63,6 @@ jobs:
         hub release create "${assets[@]}" -m "${{ steps.version.outputs.version }}" "${{ steps.version.outputs.version }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Create different versions
-      run: bash create-versions.sh ./document.pdf
 
 
     - name: Rename file
