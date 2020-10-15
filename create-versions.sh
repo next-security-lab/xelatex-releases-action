@@ -20,6 +20,7 @@ do
   gs -sDEVICE=pdfwrite \
      -dCompatibilityLevel=1.4 \
      -dPDFSETTINGS=$x \
+     -dPrinted=false \
      -dNOPAUSE \
      -dQUIET \
      -dBATCH \
