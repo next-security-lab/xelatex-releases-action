@@ -50,21 +50,6 @@ jobs:
         echo "Version: $VERSION"
         echo "::set-output name=version::$(echo v.$VERSION)"
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.version.outputs.version }}
-        release_name: Release ${{ steps.version.outputs.version }}
-        draft: false
-        prerelease: false
-
-    - name: Create different versions
-      run: bash create-versions.sh ./document.pdf
-
-    - uses: actions/checkout@v2
     - run: |
         set -x
         assets=()
@@ -74,6 +59,9 @@ jobs:
         hub release create "${assets[@]}" -m "${{ steps.version.outputs.version }}" "${{ steps.version.outputs.version }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create different versions
+      run: bash create-versions.sh ./document.pdf
 
 
     - name: Rename file
