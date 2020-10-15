@@ -1,6 +1,6 @@
-# xelatex-releases-telegram-action
+# xelatex-releases-action
 
-> A simple Github workflow to upload a XeLaTeX document to GitHub Releases and Telegram.
+> A simple Github workflow to upload a XeLaTeX document to GitHub Releases.
 
 # Dependencies
 
