@@ -9,8 +9,6 @@ This workflow relies on GitHub Actions:
 * [Setup Timezone](https://github.com/zcong1993/setup-timezone)
 * [Checkout V2](https://github.com/actions/checkout)
 * [latex-action](https://github.com/xu-cheng/latex-action)
-* [GitHub Action - Releases API](https://github.com/actions/create-release)
-* [GitHub Action - Releases API](https://github.com/actions/upload-release-asset)
 * [Telegram for GitHub Actions](https://github.com/appleboy/telegram-action)
 
 # Secrets for Telegram notifications
